@@ -1,0 +1,33 @@
+name: 
+
+on:
+  schedule:
+    - cron: '30 * * * *'
+
+jobs:
+  php-cs-fixer:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Make the tweet
+      run: python main.py
+      env:
+        TOKEN: ${{ secrets.TOKEN }}
+        TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
+        CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
+        CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
+
+
+    
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Feel alive!!!!!
+        commit_user_name: codewithpom
+        commit_user_email: codewithpom@gmail.com
