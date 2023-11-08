@@ -1,12 +1,13 @@
+import os
 import tweepy
 import requests
-import time
-import os
+import random
 
 token = os.environ['TOKEN']
 token_secret = os.environ['TOKEN_SECRET']
 consumer_key = os.environ['CONSUMER_KEY']
 consumer_secret = os.environ['CONSUMER_SECRET']
+
 
 
 
@@ -28,21 +29,13 @@ def download_image(url: str):
 
 
 def run():
-    url = "https://eager-meitner-f8adb8.netlify.app/.netlify/functions/random"
+    url = "https://raw.githubusercontent.com/deep5050/programming-memes/main/memes.json"
     response = requests.get(url)
-    data = response.json()
-    image_url = data['url']
-    print(response.text)
+    data = random.choice(response.json())
+    image_url = "https://raw.githubusercontent.com/deep5050/programming-memes/main/" + data['path']
     file_name = download_image(image_url)
-    
+    hashtags = ['#programming', '#Memes']    
     media = api.media_upload(file_name)
-    id = api.update_status(status=f"{data['title']}\n\n{' '.join(data['twitter_hashtags'])}", media_ids=[media.media_id]).id
+    id = api.update_status(status=f"{data['title']}\n\n{' '.join(hashtags)}", media_ids=[media.media_id]).id
 
-while True:
-    try:
-        run()
-        break
-    except Exception as e:
-        print(e)
-        time.sleep(5)
-        pass
+run()
