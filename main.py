@@ -17,6 +17,13 @@ auth.set_access_token(token, token_secret)
 
 api = tweepy.API(auth)
 
+
+
+client = tweepy.Client(consumer_key=consumer_key,
+                       consumer_secret=consumer_secret,
+                       access_token=token,
+                       access_token_secret=token_secret)
+
 def download_image(url: str):
     content = requests.get(url).content
     # Check the extension of the image
@@ -36,6 +43,6 @@ def run():
     file_name = download_image(image_url)
     hashtags = ['#programming', '#Memes']    
     media = api.media_upload(file_name)
-    id = api.create_tweet(text=f"{' '.join(hashtags)}", media_ids=[media.media_id])
+    id = client.create_tweet(text=f"{' '.join(hashtags)}", media_ids=[media.media_id])
 
 run()
