@@ -36,6 +36,6 @@ def run():
     file_name = download_image(image_url)
     hashtags = ['#programming', '#Memes']    
     media = api.media_upload(file_name)
-    id = api.update_status(status=f"{' '.join(hashtags)}", media_ids=[media.media_id]).id
+    id = api.create_tweet(text=f"{' '.join(hashtags)}", media_ids=[media.media_id])
 
 run()
