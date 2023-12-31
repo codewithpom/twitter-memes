@@ -5,9 +5,26 @@ on:
     branches:
       - main
   schedule:
-    - cron: '56 7 * * *'
-    - cron: '32 13 * * *'
-    - cron: '49 18 * * *'
+    - cron: '0 1 * * *'    # First time
+    - cron: '0 3 * * *'    # Second time
+    - cron: '0 5 * * *'    # Third time
+    - cron: '0 7 * * *'    # Fourth time
+    - cron: '0 9 * * *'    # Fifth time
+    - cron: '0 11 * * *'   # Sixth time
+    - cron: '0 13 * * *'   # Seventh time
+    - cron: '0 15 * * *'   # Eighth time
+    - cron: '0 17 * * *'   # Ninth time
+    - cron: '0 19 * * *'   # Tenth time
+    - cron: '0 21 * * *'   # Eleventh time
+    - cron: '0 23 * * *'   # Twelfth time
+    - cron: '0 1 * * *'    # Thirteenth time
+    - cron: '0 3 * * *'    # Fourteenth time
+    - cron: '0 5 * * *'    # Fifteenth time
+    - cron: '0 7 * * *'    # Sixteenth time
+    - cron: '0 9 * * *'    # Seventeenth time
+    - cron: '0 11 * * *'   # Eighteenth time
+    - cron: '0 13 * * *'   # Nineteenth time
+    - cron: '0 15 * * *'   # Twentieth time
 
 jobs:
   php-cs-fixer:
@@ -29,8 +46,6 @@ jobs:
         CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
         CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
 
-
-    
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Feel alive!!!!!
